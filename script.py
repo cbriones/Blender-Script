@@ -1,7 +1,7 @@
 import bpy, glob
 step = 1
 
-for filename in sorted(glob.glob("c:\\temp\\Fito\\*.wrl")):
+for filename in sorted(glob.glob("c:\\temp\\render\\*.wrl")):
 	bpy.ops.import_scene.x3d(filepath=filename, axis_forward='Z', axis_up='Y') #import vrml
 	bpy.ops.object.select_all(action='TOGGLE') #deselect everything to isolate wrl light and camera 
 	bpy.ops.object.select_pattern(pattern="TODO")#select light TODO
@@ -21,7 +21,7 @@ for filename in sorted(glob.glob("c:\\temp\\Fito\\*.wrl")):
 	serpentina = bpy.data.objects['ShapeIndexedFaceSet'] #assign mesh to var serpentina
 	mat = bpy.data.materials["Material"] #assign Material to var mat 
 	serpentina.data.materials.append(mat) #assign material mat to mesh serpentina
-	bpy.data.scenes["Scene"].render.filepath = 'c:\\temp\\Fito\\shot_%s.png' %format(step, '03d') #set png names with trailing 0's
+	bpy.data.scenes["Scene"].render.filepath = 'c:\\temp\\render\\shot_%s.png' %format(step, '03d') #set png names with trailing 0's
 	bpy.ops.render.render( write_still=True ) #RENDER
 	bpy.ops.object.mode_set(mode='OBJECT') #por siaka
 	bpy.ops.object.select_by_type(type='MESH') #select mesh objects
